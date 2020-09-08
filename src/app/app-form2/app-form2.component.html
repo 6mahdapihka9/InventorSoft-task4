@@ -2,6 +2,7 @@
   <h1>second task</h1>
   <form [formGroup]="myForm2" (ngSubmit)="onSubmit()">
     <h2>form2</h2>
+<!--Директива formControlName, которая в качестве значения принимает название (ключ) элемента ввода из модели формы-->
     <input name="username" type="text" placeholder="username" formControlName="username" #login>
 
     <input name="email" type="email" placeholder="email" formControlName="email" #email>
@@ -9,7 +10,7 @@
     <span *ngIf="myForm2.get('email').invalid && myForm2.get('email').errors.email">Email is not valid!</span>
 
     <input name="password" type="password" placeholder="password" formControlName="password" #password>
-
+<!--    Если свойство myForm.valid true - кнопка неактивна-->
     <button type="submit" [disabled]="!myForm2.valid">Submit</button>
   </form>
 </div>
