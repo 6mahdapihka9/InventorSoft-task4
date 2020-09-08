@@ -4,6 +4,7 @@
     <h2>form2</h2>
     <!--    Директива formControlName, которая в качестве значения принимает название (ключ) элемента ввода из модели формы-->
     <input name="username" type="text" placeholder="username" formControlName="username">
+<!--    Валидаторы длинны userName minlength и maxlength-->
     <span
       *ngIf="userName.invalid && userName.errors.minlength"
     >Login is too short!</span>
@@ -15,6 +16,7 @@
     <span
       *ngIf="password.invalid && password.errors.required"
     >Password required!</span>
+<!--    Кастомным валидатор hasNumbersAndLetters проверяющий наличие хотя бы одной буквы и/или цифры-->
     <span
       *ngIf="password.invalid && password.errors.hasNumbersAndLetters"
     >Password must contain numbers or letters!</span>
