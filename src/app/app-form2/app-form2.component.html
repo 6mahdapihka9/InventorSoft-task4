@@ -2,15 +2,33 @@
   <h1>second task</h1>
   <form [formGroup]="myForm2" (ngSubmit)="onSubmit()">
     <h2>form2</h2>
-<!--Директива formControlName, которая в качестве значения принимает название (ключ) элемента ввода из модели формы-->
-    <input name="username" type="text" placeholder="username" formControlName="username" #login>
+    <!--    Директива formControlName, которая в качестве значения принимает название (ключ) элемента ввода из модели формы-->
+    <input name="username" type="text" placeholder="username" formControlName="username">
+    <span
+      *ngIf="userName.invalid && userName.errors.minlength"
+    >Login is too short!</span>
+    <span
+      *ngIf="userName.invalid && userName.errors.maxlength"
+    >Login is too long!</span>
 
-    <input name="email" type="email" placeholder="email" formControlName="email" #email>
-    <span *ngIf="myForm2.get('email').invalid && myForm2.get('email').errors.required">Email required!</span>
-    <span *ngIf="myForm2.get('email').invalid && myForm2.get('email').errors.email">Email is not valid!</span>
+    <input name="password" type="password" placeholder="password" formControlName="password">
+    <span
+      *ngIf="password.invalid && password.errors.required"
+    >Password required!</span>
+    <span
+      *ngIf="password.invalid && password.errors.hasNumbersAndLetters"
+    >Password must contain numbers or letters!</span>
 
-    <input name="password" type="password" placeholder="password" formControlName="password" #password>
-<!--    Если свойство myForm.valid true - кнопка неактивна-->
+    <div formArrayName="emails" *ngIf="emails.length !== 0">
+      <div class="emailDiv" *ngFor="let control of emails.controls; let i = index">
+        <input name="emails" type="email" placeholder="email {{i+1}}" [formControlName]="i">
+<!--        <span *ngIf="myForm2.get('i').invalid && myForm2.get('i').errors.required">Email required!</span>-->
+<!--        <span *ngIf="myForm2.get('i').invalid && myForm2.get('i').errors.email">Email is not valid!</span>-->
+        <button type="button" on-click="removeEmail(i)" >Remove email</button>
+      </div>
+    </div>
+    <button type="button" on-click="addEmail()">Add email</button>
+    <!--    Если свойство myForm.valid true - кнопка неактивна-->
     <button type="submit" [disabled]="!myForm2.valid">Submit</button>
   </form>
 </div>
