@@ -1,0 +1,30 @@
+*:not(span) {
+  padding: 10px;
+  margin: 30px;
+}
+span{
+  margin-left: 30px;
+  color: red;
+}
+div, form{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.emailDiv, .emailDiv input,.emailDiv button{
+  margin: 0;
+}
+.emailDiv{
+  display: block;
+  padding: 0;
+  border: none
+}
+.emailDiv input{
+  width: 60%;
+}
+.emailDiv button{
+  width: 30%;
+}

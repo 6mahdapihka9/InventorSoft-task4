@@ -1,0 +1,17 @@
+<div>
+  <h1>first task</h1>
+  <form (ngSubmit)="onSubmit(myForm1)" #myForm1="ngForm">
+    <h2>form1</h2>
+    <input name="login" type="text" placeholder="login" ngModel required #login="ngModel">
+    <span *ngIf="login.invalid && login.errors.required">Login required!</span>
+
+    <input name="email" type="email" placeholder="email" ngModel required email #email="ngModel">
+    <span *ngIf="email.invalid && email.errors.required">Email required!</span>
+    <span *ngIf="email.invalid && email.errors.email">Email is not valid!</span>
+
+    <input name="password" type="password" placeholder="password" ngModel [minlength]=8 #password="ngModel">
+    <span *ngIf="password.invalid && password.errors.minlength">Password is too short!</span>
+
+    <button type="submit" [disabled]="!myForm1.valid">Submit</button>
+  </form>
+</div>
